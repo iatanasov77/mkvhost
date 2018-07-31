@@ -39,7 +39,7 @@ if ( file_exists( $vhostConfFile ) && ! array_key_exists( 'f', $opt ) )
 $hosts = file_get_contents('/etc/hosts');
 if( stripos( $opt['s'], $hosts ) === FALSE )
 {
-    file_put_contents( sprintf( '/etc/hosts', "%s\t%s www.%s\n", $opt['a'], $opt['s'], $opt['s'] ), FILE_APPEND );
+    file_put_contents( '/etc/hosts', sprintf( "%s\t%s www.%s\n", $opt['a'], $opt['s'], $opt['s'] ), FILE_APPEND );
 }
 
 // Create Virtual Host
