@@ -4,7 +4,7 @@
 require_once 'functions.php';
 
 // Get Option Switches
-$opt = getopt('s:d:t:f');
+$opt = getopt('a:s:d:t:f');
 
 /*
  * Globals
@@ -17,10 +17,14 @@ $config		= loadConfig();
 // Must to be root user
 posix_getuid() === 0 || die("You must to be root.\n");
 
-// Check parameter count
+// Check parameters
 if ( ! isset( $opt['t'] ) || ! isset( $opt['s'] ) || ! isset( $opt['d'] ) )
 {
 	die( Usage()."\n" );
+}
+if ( ! isset( $opt['a'] ) )
+{
+    $opt['a']   = '127.0.0.1';
 }
 
 $vhostConfFile	= $config['vhostConfDir'] . '/' . $opt['s'] . '.conf';
@@ -33,9 +37,9 @@ if ( file_exists( $vhostConfFile ) && ! array_key_exists( 'f', $opt ) )
 
 // Create a host record
 $hosts = file_get_contents('/etc/hosts');
-if(stripos($opt['s'], $hosts) === FALSE)
+if( stripos( $opt['s'], $hosts ) === FALSE )
 {
-    file_put_contents('/etc/hosts', "127.0.0.1\t".$opt['s']." www.".$opt['s']."\n", FILE_APPEND);
+    file_put_contents( sprintf( '/etc/hosts', "%s\t%s www.%s\n", $opt['a'], $opt['s'], $opt['s'] ), FILE_APPEND );
 }
 
 // Create Virtual Host
