@@ -50,7 +50,7 @@ $vhost		= renderTemplate( $vhostTpl, $params );
 
 file_put_contents( $vhostConfFile, $vhost);
 if($OS == 'Ubuntu') {
-	exec("a2ensite {$argv[1]}");
+	exec("a2ensite {$opt['s']}");
 }
 
 // Reload Apache
