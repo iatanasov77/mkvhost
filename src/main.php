@@ -18,9 +18,14 @@ $config		= loadConfig();
 posix_getuid() === 0 || die("You must to be root.\n");
 
 // Check parameters
-if ( ! isset( $opt['t'] ) || ! isset( $opt['s'] ) || ! isset( $opt['d'] ) )
+if ( ! isset( $opt['s'] ) || ! isset( $opt['d'] ) )
 {
 	die( Usage()."\n" );
+}
+
+if ( ! isset( $opt['t'] ) )
+{
+    $opt['t']   = 'simple';
 }
 if ( ! isset( $opt['a'] ) )
 {
