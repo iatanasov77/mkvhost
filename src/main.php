@@ -1,6 +1,7 @@
 #!/usr/bin/php
 <?php
 
+require_once 'detect_linux.php';
 require_once 'functions.php';
 
 // Get Option Switches
@@ -11,7 +12,6 @@ $opt = getopt('a:s:d:t:f');
  */
 $dirSep		= DIRECTORY_SEPARATOR;
 $rootDir	= dirname( __FILE__ );
-$OS 		= shell_exec('lsb_release -si');
 $config		= loadConfig();
 
 // Must to be root user
