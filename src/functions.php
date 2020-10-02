@@ -50,13 +50,27 @@ function loadConfig()
 }
 
 /**
- * Script Usage
+ * Print Usage
  */
 function Usage()
 {
 	global $argv;
 
-	$usage = "Usage: " . $argv[0] . " -t vhost_template -s your_domain.com -d /path/to/document_root";
+	$usage = "
+============================================================================================================================================ \n
+= Usage \n
+============================ \n
+= \n
+= Usage: " . $argv[0] . " -t vhost_template -s your_domain.com -d /path/to/document_root \n
+= \n
+= Simple Usage: " . $argv[0] . " -s your_domain.com -d /path/to/document_root \n
+= \n
+= Add Reverse Proxy: " . $argv[0] . " -s your_domain.com -d /path/to/document_root -r http://127.0.0.1:5000/ \n
+= \n
+= Add PhpFpm Socket(FCGI): " . $argv[0] . " -s your_domain.com -d /path/to/document_root -p /opt/phpbrew/php/php-7.4.1/var/run/php-fpm.sock \n
+= \n
+============================================================================================================================================ \n
+";
 
 	return $usage;
 }
